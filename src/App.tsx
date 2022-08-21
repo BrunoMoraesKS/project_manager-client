@@ -1,12 +1,17 @@
-import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import React, { useContext } from 'react';
+import '../src/i18n';
+import { GlobalStyles } from './global/styles/globals';
+import { ThemeProvider } from 'styled-components';
+import { ThemeContext } from './context/theme';
+import { dark, light } from './global/styles/themeConfig';
 
 function App() {
+  const { selectedTheme } = useContext(ThemeContext);
+
   return (
-    <div>
-      DELETE <FontAwesomeIcon icon={faTrash} />
-    </div>
+    <ThemeProvider theme={selectedTheme === 'light' ? light : dark}>
+      <GlobalStyles />
+    </ThemeProvider>
   );
 }
 

@@ -1,0 +1,13 @@
+{
+  "translation": {
+    "common": {
+      "test": "testando i18n"
+    },
+
+    "shouldBeCompletedAt": {
+      "title": "Deve ser completado até",
+      "today": "Hoje",
+      "tomorrow": "Amanhã"
+    }
+  }
+}

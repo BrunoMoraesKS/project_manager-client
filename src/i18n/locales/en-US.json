@@ -1,0 +1,13 @@
+{
+  "translation": {
+    "common": {
+      "test": "testing i18n"
+    },
+
+    "shouldBeCompletedAt": {
+      "title": "Should be complete until",
+      "today": "Today",
+      "tomorrow": "Tomorrow"
+    }
+  }
+}
