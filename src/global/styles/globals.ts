@@ -70,7 +70,7 @@ export const GlobalStyles = styled.createGlobalStyle`
   h2 {
     display: flex;
     align-self: flex-start;
-    font-size: 3rem;
+    font-size: 3.5rem;
   }
   h3 {
     font-size: 2.5rem;
@@ -79,7 +79,7 @@ export const GlobalStyles = styled.createGlobalStyle`
   h4,
   h5,
   h6 {
-    font-size: 1.45rem;
+    font-size: 2rem;
     font-weight: ${weight.lg};
     letter-spacing: 1.5px;
   }

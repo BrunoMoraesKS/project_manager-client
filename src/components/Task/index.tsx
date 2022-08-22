@@ -1,5 +1,5 @@
-import { t } from 'i18next';
 import React, { useContext } from 'react';
+import { useTranslation } from 'react-i18next';
 import { ThemeContext } from '../../context/theme';
 import { dateFormat } from '../../utils/dateFormat';
 import * as S from './styles';
@@ -18,6 +18,7 @@ const Task = ({
   isCompleted,
 }: ITaskProps) => {
   const { selectedTheme } = useContext(ThemeContext);
+  const { t } = useTranslation();
 
   console.log(selectedTheme);
 
@@ -55,12 +56,12 @@ const Task = ({
       <S.CheckBox>
         <S.Check type="checkbox" id={title} defaultChecked={isCompleted} />
         <S.Label htmlFor={title}>
-          <svg width="40" height="40" viewBox="0 5 100 100">
+          <svg width="50" height="50" viewBox="20 25 100 100">
             <rect
-              x="20"
-              y="20"
-              width="50"
-              height="50"
+              x="25"
+              y="25"
+              width="45"
+              height="45"
               stroke={
                 isCompleted
                   ? selectedTheme === 'light'
@@ -89,8 +90,6 @@ const Task = ({
       </S.CheckBox>
 
       <S.Span>{`${title} @${user} ${dateCode[status()]}`}</S.Span>
-      {/* <S.Span>@{user}</S.Span>
-      <S.Span>{dateCode[status()]}</S.Span> */}
     </S.Container>
   );
 };

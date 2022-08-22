@@ -1,13 +1,25 @@
 {
   "translation": {
     "common": {
-      "test": "testando i18n"
+      "create": "Criar",
+      "cancel": "Cancelar",
+      "typeHere": "Digite aqui..."
     },
 
     "shouldBeCompletedAt": {
       "title": "Deve ser completado até",
       "today": "Hoje",
       "tomorrow": "Amanhã"
+    },
+
+    "menu": {
+      "title": "Projetos",
+      "newProject": "Novo Projeto"
+    },
+
+    "newProjectModal": {
+      "name": "Nome",
+      "nameIsRequired": "Nome é necessário"
     }
   }
 }

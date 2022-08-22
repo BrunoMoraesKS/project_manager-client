@@ -28,7 +28,7 @@ export const InnerContainer = styled.div`
   -webkit-box-shadow: ${({ theme }) => `3px 3px 9px 4px ${theme.oposite}50`};
   box-shadow: ${({ theme }) => `3px 3px 9px 4px ${theme.oposite}50`};
 
-  background-color: ${({ theme }) => theme.gray};
+  background-color: ${({ theme }) => theme.grey};
 `;
 
 export const Test = styled.div`

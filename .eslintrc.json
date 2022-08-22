@@ -30,7 +30,10 @@
 
     "@typescript-eslint/explicit-module-boundary-types": "off",
 
-    "jest/expect-expect": "off"
+    "jest/expect-expect": "off",
+
+    "@typescript-eslint/no-floating-promises": "off",
+    "@typescript-eslint/strict-boolean-expressions": "off"
   },
   "settings": {
     "import/resolver": {

@@ -14,7 +14,7 @@ const Button = ({
   ...props
 }: IButtonProps) => {
   return (
-    <S.Container variant={variant} fullWidth={fullWidth}>
+    <S.Container variant={variant} fullWidth={fullWidth} {...props}>
       {children}
     </S.Container>
   );

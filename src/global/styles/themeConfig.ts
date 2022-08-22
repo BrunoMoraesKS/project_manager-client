@@ -5,8 +5,10 @@ export const light: DefaultTheme = {
   secondary: '#cae9ff',
   tertiary: '#5fa8d3',
 
+  menu: '#224563',
+
   red: '#ba0b0b',
-  gray: '#dedede',
+  grey: '#dedede',
   black: '#080808',
   white: '#f7f7f7',
 
@@ -23,8 +25,10 @@ export const dark: DefaultTheme = {
   secondary: '#003566',
   tertiary: '#001d3d',
 
+  menu: '#224563',
+
   red: '#ba0b0b',
-  gray: '#6c757d',
+  grey: '#6c757d',
   black: '#080808',
   white: '#f7f7f7',
 

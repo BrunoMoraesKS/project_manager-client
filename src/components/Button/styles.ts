@@ -14,11 +14,14 @@ export const Container = styled.button<IContainerProps>`
   background-color: ${({ theme, variant }) =>
     variant === 'primary' ? theme.primary : 'transparent'};
   color: ${({ theme, variant }) =>
-    variant === 'primary' ? theme.heading : theme.primary};
+    variant === 'primary' ? theme.white : theme.primary};
 
   border: ${({ theme }) => `1px solid ${theme.primary}`};
 
   border-radius: 4px;
+
+  font-size: 1.55rem;
+  letter-spacing: 0.75px;
 
   cursor: pointer;
 
@@ -30,6 +33,6 @@ export const Container = styled.button<IContainerProps>`
     background-color: ${({ theme, variant }) =>
       variant === 'primary' ? 'auto' : theme.primary};
     color: ${({ theme, variant }) =>
-      variant === 'primary' ? 'auto' : theme.heading};
+      variant === 'primary' ? 'auto' : theme.white};
   }
 `;

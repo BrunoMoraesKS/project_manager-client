@@ -15,7 +15,7 @@ export const Container = styled.div<IContainerProps>`
   text-decoration-color: ${({ theme }) => theme.oposite};
   span {
     color: ${({ status, isCompleted, theme }) =>
-      isCompleted ? theme.gray : status};
+      isCompleted ? theme.grey : status};
   }
 `;
 
