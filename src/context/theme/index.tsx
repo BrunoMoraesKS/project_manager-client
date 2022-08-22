@@ -1,16 +1,18 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
+/* eslint-disable @typescript-eslint/strict-boolean-expressions */
 import { createContext, ReactNode, useState } from 'react';
 
-type ThemeContextProps = {
+interface ThemeContextProps {
   children: ReactNode;
-};
+}
 
-type ThemeContextType = {
+interface ThemeContextType {
   selectedTheme: string | null;
   setSelectedTheme: (theme: string) => void;
-};
+}
 
 const initialValue = {
-  selectedTheme: localStorage.getItem('selectedTheme') || 'light',
+  selectedTheme: localStorage.getItem('selectedTheme') ?? 'light',
   setSelectedTheme: () => {},
 };
 
