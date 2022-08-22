@@ -20,6 +20,19 @@
     "newProjectModal": {
       "name": "Name",
       "nameIsRequired": "Name is required"
+    },
+
+    "newTaskModal": {
+      "addTask": "New Task",
+
+      "name": "Task",
+      "nameIsRequired": "Task is required",
+
+      "user": "User",
+      "userIsRequired": "User is required",
+
+      "shouldBeCompletedAt": "Should be done until",
+      "shouldBeCompletedAtIsRequired": "Date is required"
     }
   }
 }

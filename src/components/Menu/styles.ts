@@ -1,5 +1,4 @@
 import styled, { keyframes } from 'styled-components';
-import { breakpoints } from '../../global/styles/globals';
 
 interface IContainerProps {
   isMenuOpen: boolean;
@@ -20,6 +19,8 @@ export const Container = styled.nav<IContainerProps>`
   display: ${({ isMenuOpen }) => (isMenuOpen ? 'flex' : 'none')};
   flex-direction: column;
   position: ${({ width }) => (width > 768 ? 'auto' : 'absolute')};
+
+  padding-top: ${({ width }) => (width > 768 ? '24px' : 'auto')};
 
   top: 0;
   left: 0;
@@ -82,6 +83,8 @@ export const Project = styled.h4`
   white-space: nowrap;
   overflow: hidden;
   color: ${({ theme }) => theme.white};
+
+  cursor: pointer;
 `;
 
 export const NewProjectButton = styled.button`
@@ -93,29 +96,9 @@ export const NewProjectButton = styled.button`
   text-decoration: underline;
   color: ${({ theme }) => `${theme.white}99`};
 
+  margin-bottom: 24px;
+
   font-size: 1.6rem;
+
+  cursor: pointer;
 `;
-
-export const NewProjectModalContainer = styled.div`
-  width: 80vw;
-  max-width: 400px;
-`;
-
-export const NewProjectTitle = styled.h5``;
-
-export const NewProjectTitleContainer = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  margin-bottom: 40px;
-`;
-
-export const NewProjectCloseButton = styled.button`
-  background: none;
-  border: none;
-
-  font-size: 2.3rem;
-`;
-
-export const NewProjectContent = styled.div``;

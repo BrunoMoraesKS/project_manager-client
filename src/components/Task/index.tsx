@@ -7,7 +7,7 @@ import * as S from './styles';
 interface ITaskProps {
   title: string;
   user: string;
-  shouldBeCompletedAt: string;
+  shouldBeCompletedAt: Date;
   isCompleted: boolean;
 }
 
@@ -20,21 +20,31 @@ const Task = ({
   const { selectedTheme } = useContext(ThemeContext);
   const { t } = useTranslation();
 
-  console.log(selectedTheme);
-
   const status = () => {
-    const today = new Date();
     const shouldBeCompletedAtDate = new Date(shouldBeCompletedAt);
+    shouldBeCompletedAtDate.setDate(shouldBeCompletedAtDate.getDate() + 1);
 
-    if (shouldBeCompletedAtDate.getDate() < today.getDate()) {
+    const today = new Date().toLocaleDateString();
+
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+
+    if (shouldBeCompletedAtDate.toLocaleDateString() < today) {
       return 0;
-    } else if (shouldBeCompletedAtDate.getDate() === today.getDate()) {
-      return 1;
-    } else if (shouldBeCompletedAtDate.getDate() === today.getDate() + 1) {
-      return 2;
-    } else {
-      return 3;
     }
+
+    if (shouldBeCompletedAtDate.toLocaleDateString() === today) {
+      return 1;
+    }
+
+    if (
+      shouldBeCompletedAtDate.toLocaleDateString() ===
+      tomorrow.toLocaleDateString()
+    ) {
+      return 2;
+    }
+
+    return 3;
   };
 
   const dateCode = {

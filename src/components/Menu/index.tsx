@@ -1,7 +1,4 @@
 import React, { Fragment, useEffect, useRef, useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { read } from '../../services/projects/read';
-import { setLoading } from '../../store/ducks/loading';
 import * as S from './styles';
 import { faXmark, faBars } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -12,8 +9,8 @@ import { IProject } from '../../interfaces/project';
 import { useTranslation } from 'react-i18next';
 import NewProjectModal from '../NewProjectModal';
 import MiniLoading from '../MiniLoading';
-import Loading from '../Loading';
 import useProjects from '../../services/hooks/projects/useProjects';
+import { useNavigate } from 'react-router-dom';
 
 const Menu = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -21,11 +18,11 @@ const Menu = () => {
   const [showNewProjectModal, setShowNewProjectModal] = useState(false);
 
   const { t } = useTranslation();
-  const { data: projects, isLoading, isFetching, isError } = useProjects();
+  const navigate = useNavigate();
+  const { data: projects, isFetching } = useProjects();
 
   const wrapperRef = useRef(null);
   const { width } = useWindowDimensions();
-  const dispatch = useDispatch();
 
   useClickOutside(wrapperRef, () => {
     if (isMenuOpen) {
@@ -75,7 +72,14 @@ const Menu = () => {
           {projects?.map((project: IProject) => {
             return (
               <Fragment key={project.id}>
-                <S.Project>{project.name}</S.Project>
+                <S.Project
+                  onClick={() => {
+                    navigate(`project/${project.id}`);
+                    width < 768 && setIsMenuOpen(false);
+                  }}
+                >
+                  {project.name}
+                </S.Project>
 
                 <Divider />
               </Fragment>

@@ -1,5 +1,4 @@
 import React from 'react';
-
 import * as S from './styles';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -12,10 +11,7 @@ import Modal from '../Modal';
 import Input from '../Input';
 import Button from '../Button';
 import { create } from '../../services/projects/create';
-import { setLoading } from '../../store/ducks/loading';
-import { useDispatch } from 'react-redux';
 import { useMutation, useQueryClient } from 'react-query';
-import { queryClient } from '../../services/queryClient';
 
 interface INewProjectModalProps {
   setShowNewProjectModal: (value: boolean) => void;
@@ -27,9 +23,9 @@ interface IData {
 
 const NewProjectModal = ({ setShowNewProjectModal }: INewProjectModalProps) => {
   const { t } = useTranslation();
-  const dispatch = useDispatch();
-  const queryClient2 = useQueryClient();
-  const createUser = useMutation(async ({ name }: IData) => {
+  const queryClient = useQueryClient();
+
+  const createProject = useMutation(async ({ name }: IData) => {
     const { data } = await create({ name });
 
     return data;
@@ -50,11 +46,11 @@ const NewProjectModal = ({ setShowNewProjectModal }: INewProjectModalProps) => {
   const onSubmit = async (data: AnyObject) => {
     const { name } = data;
 
-    await createUser.mutateAsync(
+    await createProject.mutateAsync(
       { name },
       {
         onSuccess: () => {
-          queryClient2.invalidateQueries('projects');
+          queryClient.invalidateQueries('projects');
         },
 
         onError: () => {
