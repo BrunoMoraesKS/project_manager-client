@@ -1,7 +1,7 @@
 import { faPencil, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
-import SoftDeleteProjectModal from '../DeleteProjectModal';
+import SoftDeleteProjectModal from '../SoftdeleteProjectModal';
 import Divider from '../Divider';
 import UpdateProjectModal from '../UpdateProjectModal';
 import * as S from './styles';

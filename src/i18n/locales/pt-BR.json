@@ -52,6 +52,30 @@
 
     "softdeleteProjectModal": {
       "softdeleteProject": "Mover para a lixeira"
+    },
+
+    "filterTasksModal": {
+      "filterTasks": "Filtrar por",
+      "default": "Padrão",
+      "done": "Completadas",
+      "expired": "Expiradas",
+      "pending": "Pendentes"
+    },
+
+    "configModal": {
+      "settings": "Configurações",
+      "language": "Mudar o idioma",
+      "theme": "Mudar o tema",
+      "trashCan": "Lixeira"
+    },
+
+    "trashCan": {
+      "title": "Lixeira",
+      "restore": "Restaurar",
+      "restoreAll": "Restaurar todos",
+      "delete": "Deletar",
+      "deleteAll": "Deletar todos",
+      "deletedAt": "Deletado em"
     }
   }
 }

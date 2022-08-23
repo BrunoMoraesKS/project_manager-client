@@ -13,6 +13,31 @@ export const Container = styled.div`
 
 export const TasksContainer = styled.div``;
 
+export const FilterButton = styled.button`
+  display: flex;
+  align-self: flex-end;
+
+  font-size: 3rem;
+
+  border: none;
+  background: none;
+
+  cursor: pointer;
+
+  transition: 0.1s all;
+  &:hover {
+    color: ${({ theme }) => theme.primary};
+  }
+`;
+
+export const FilterMenu = styled.button`
+  position: absolute;
+  display: flex;
+  align-self: flex-end;
+
+  border: 1px solid red;
+`;
+
 export const NewProjectButton = styled.button`
   display: flex;
   align-self: flex-start;

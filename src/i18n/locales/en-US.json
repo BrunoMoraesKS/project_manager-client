@@ -52,6 +52,30 @@
 
     "softdeleteProjectModal": {
       "softdeleteProject": "Move to trash"
+    },
+
+    "filterTasksModal": {
+      "filterTasks": "Filter by",
+      "default": "Default",
+      "done": "Done",
+      "expired": "Expired",
+      "pending": "Pending"
+    },
+
+    "configModal": {
+      "settings": "Settings",
+      "language": "Change language",
+      "theme": "Change theme",
+      "trashCan": "Trash can"
+    },
+
+    "trashCan": {
+      "title": "Trash Can",
+      "restore": "Restore",
+      "restoreAll": "Restore all",
+      "delete": "Delete",
+      "deleteAll": "Delete All",
+      "deletedAt": "Deleted at"
     }
   }
 }

@@ -32,7 +32,6 @@ const Task = ({
   const { selectedTheme } = useContext(ThemeContext);
   const { t } = useTranslation();
 
-  const today = new Date();
   const shouldBeCompletedAtDate = new Date(shouldBeCompletedAt);
   shouldBeCompletedAtDate.setDate(shouldBeCompletedAtDate.getDate() + 1);
 
@@ -65,14 +64,7 @@ const Task = ({
   return (
     <S.Container
       isCompleted={isTaskCompleted}
-      status={
-        checkboxColor[
-          dateCompare(
-            shouldBeCompletedAtDate.toLocaleDateString(),
-            today.toLocaleDateString()
-          )
-        ]
-      }
+      status={checkboxColor[dateCompare(shouldBeCompletedAt)]}
     >
       <S.CheckBox>
         <S.Check
@@ -101,12 +93,7 @@ const Task = ({
                   ? selectedTheme === 'light'
                     ? '#dedede'
                     : '#6c757d'
-                  : checkboxColor[
-                      dateCompare(
-                        shouldBeCompletedAtDate.toLocaleDateString(),
-                        today.toLocaleDateString()
-                      )
-                    ]
+                  : checkboxColor[dateCompare(shouldBeCompletedAt)]
               }
               fill="none"
             />
@@ -129,12 +116,7 @@ const Task = ({
       </S.CheckBox>
 
       <S.Span>{`${title} @${user} ${
-        dateCode[
-          dateCompare(
-            shouldBeCompletedAtDate.toLocaleDateString(),
-            today.toLocaleDateString()
-          )
-        ]
+        dateCode[dateCompare(shouldBeCompletedAt)]
       }`}</S.Span>
 
       <S.ButtonsContainer>
