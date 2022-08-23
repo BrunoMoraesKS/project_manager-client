@@ -8,6 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as S from './styles';
 import UpdateTaskModal from '../UpdateTaskModal';
 import DeleteTaskModal from '../DeleteTaskModal';
+import { dateCompare } from '../../utils/dateCompare';
 
 interface ITaskProps {
   id: string;
@@ -31,30 +32,9 @@ const Task = ({
   const { selectedTheme } = useContext(ThemeContext);
   const { t } = useTranslation();
 
+  const today = new Date();
   const shouldBeCompletedAtDate = new Date(shouldBeCompletedAt);
   shouldBeCompletedAtDate.setDate(shouldBeCompletedAtDate.getDate() + 1);
-
-  const dateCheck = () => {
-    const today = new Date();
-    const tomorrow = new Date();
-    tomorrow.setDate(tomorrow.getDate() + 1);
-    const shouldBeCompletedAtDate = new Date(shouldBeCompletedAt);
-    shouldBeCompletedAtDate.setDate(shouldBeCompletedAtDate.getDate() + 1);
-
-    if (
-      shouldBeCompletedAtDate.toDateString() < today.toDateString() &&
-      shouldBeCompletedAtDate.getFullYear() <= today.getFullYear()
-    ) {
-      return 0;
-    }
-    if (shouldBeCompletedAtDate.toDateString() === today.toDateString()) {
-      return 1;
-    }
-    if (shouldBeCompletedAtDate.toDateString() === tomorrow.toDateString()) {
-      return 2;
-    }
-    return 3;
-  };
 
   const dateCode = {
     0: shouldBeCompletedAtDate.toLocaleDateString(),
@@ -85,7 +65,14 @@ const Task = ({
   return (
     <S.Container
       isCompleted={isTaskCompleted}
-      status={checkboxColor[dateCheck()]}
+      status={
+        checkboxColor[
+          dateCompare(
+            shouldBeCompletedAtDate.toLocaleDateString(),
+            today.toLocaleDateString()
+          )
+        ]
+      }
     >
       <S.CheckBox>
         <S.Check
@@ -114,7 +101,12 @@ const Task = ({
                   ? selectedTheme === 'light'
                     ? '#dedede'
                     : '#6c757d'
-                  : checkboxColor[dateCheck()]
+                  : checkboxColor[
+                      dateCompare(
+                        shouldBeCompletedAtDate.toLocaleDateString(),
+                        today.toLocaleDateString()
+                      )
+                    ]
               }
               fill="none"
             />
@@ -136,7 +128,14 @@ const Task = ({
         </S.Label>
       </S.CheckBox>
 
-      <S.Span>{`${title} @${user} ${dateCode[dateCheck()]}`}</S.Span>
+      <S.Span>{`${title} @${user} ${
+        dateCode[
+          dateCompare(
+            shouldBeCompletedAtDate.toLocaleDateString(),
+            today.toLocaleDateString()
+          )
+        ]
+      }`}</S.Span>
 
       <S.ButtonsContainer>
         <S.TaskButton

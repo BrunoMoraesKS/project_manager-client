@@ -91,7 +91,9 @@ const UpdateTaskModal = ({
     <Modal>
       <S.UpdateTaskModalContainer>
         <S.UpdateTaskTitleContainer>
-          <S.UpdateTaskTitle>{t('newTaskModal.addTask')}</S.UpdateTaskTitle>
+          <S.UpdateTaskTitle>
+            {t('updateTaskModal.updateTask')}
+          </S.UpdateTaskTitle>
           <S.UpdateTaskCloseButton
             onClick={() => {
               setShowUpdateTaskModal(false);
@@ -171,7 +173,7 @@ const UpdateTaskModal = ({
             }}
             fullWidth
           >
-            {t('common.create').toUpperCase()}
+            {t('common.update').toUpperCase()}
           </Button>
         </S.UpdateTaskButtonsContainer>
       </S.UpdateTaskModalContainer>

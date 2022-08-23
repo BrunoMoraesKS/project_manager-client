@@ -4,7 +4,9 @@
       "create": "Create",
       "cancel": "Cancel",
       "typeHere": "Type here...",
-      "delete": "Delete"
+      "delete": "Delete",
+      "update": "Update",
+      "move": "Move"
     },
 
     "shouldBeCompletedAt": {
@@ -38,6 +40,18 @@
 
     "deleteTaskModal": {
       "areYouSure": "Are you sure?"
+    },
+
+    "updateTaskModal": {
+      "updateTask": "Update task"
+    },
+
+    "updateProjectModal": {
+      "updateProject": "Update project"
+    },
+
+    "softdeleteProjectModal": {
+      "softdeleteProject": "Move to trash"
     }
   }
 }

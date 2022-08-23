@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom';
 import Loading from '../../components/Loading';
 import MiniLoading from '../../components/MiniLoading';
 import NewTaskModal from '../../components/NewTaskModal';
+import ProjectHeader from '../../components/ProjectHeader';
 import Task from '../../components/Task';
 import useProject from '../../services/hooks/projects/useProject';
 
@@ -41,7 +42,7 @@ const Project = () => {
         <S.Container>
           {!id && <h1>id not found</h1>}
 
-          {project && <h1>{project.name}</h1>}
+          {project && <ProjectHeader id={project.id} name={project.name} />}
 
           <S.TasksContainer>
             {isFetching && <MiniLoading />}
