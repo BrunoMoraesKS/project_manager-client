@@ -22,6 +22,8 @@ export const NewTaskCloseButton = styled.button`
   border: none;
 
   font-size: 2.3rem;
+
+  cursor: pointer;
 `;
 
 export const NewTaskContent = styled.div`

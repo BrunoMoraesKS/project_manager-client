@@ -97,6 +97,7 @@ const NewProjectModal = ({ setShowNewProjectModal }: INewProjectModalProps) => {
 
         <S.NewProjectButtonsContainer>
           <Button
+            disabled={createProject.isLoading}
             onClick={() => {
               setShowNewProjectModal(false);
             }}
@@ -106,6 +107,7 @@ const NewProjectModal = ({ setShowNewProjectModal }: INewProjectModalProps) => {
             {t('common.cancel').toUpperCase()}
           </Button>
           <Button
+            disabled={createProject.isLoading}
             onClick={(e) => {
               e.preventDefault();
               handleSubmit(onSubmit)();

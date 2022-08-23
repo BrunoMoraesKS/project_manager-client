@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const NewProjectModalContainer = styled.form`
+export const DeleteTaskModalContainer = styled.form`
   display: flex;
   flex-direction: column;
   gap: 40px;
@@ -9,15 +9,15 @@ export const NewProjectModalContainer = styled.form`
   max-width: 400px;
 `;
 
-export const NewProjectTitle = styled.h5``;
+export const DeleteTaskTitle = styled.h5``;
 
-export const NewProjectTitleContainer = styled.div`
+export const DeleteTaskTitleContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
 `;
 
-export const NewProjectCloseButton = styled.button`
+export const DeleteTaskCloseButton = styled.button`
   background: none;
   border: none;
 
@@ -26,9 +26,7 @@ export const NewProjectCloseButton = styled.button`
   cursor: pointer;
 `;
 
-export const NewProjectContent = styled.div``;
-
-export const NewProjectButtonsContainer = styled.div`
+export const DeleteTaskButtonsContainer = styled.div`
   display: flex;
   align-self: flex-end;
   gap: 8px;

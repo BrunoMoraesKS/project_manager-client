@@ -27,6 +27,11 @@ export const Container = styled.button<IContainerProps>`
 
   transition: 0.2s all;
 
+  &:disabled {
+    cursor: not-allowed;
+    pointer-events: all !important;
+  }
+
   &:hover {
     box-shadow: ${({ theme }) => `0px 0px 5px 1px ${theme.oposite}50`};
 

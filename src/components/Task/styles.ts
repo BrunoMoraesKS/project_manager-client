@@ -51,3 +51,24 @@ export const Path1 = styled.path`
   stroke-dashoffset: 400;
   transition: 0.5s all;
 `;
+
+export const ButtonsContainer = styled.div`
+  display: flex;
+  gap: 12px;
+
+  margin-left: 12px;
+`;
+
+export const TaskButton = styled.button`
+  border: none;
+  background: none;
+
+  font-size: 1.7rem;
+
+  cursor: pointer;
+
+  transition: 0.1s all;
+  &:hover {
+    color: ${({ theme }) => theme.primary};
+  }
+`;

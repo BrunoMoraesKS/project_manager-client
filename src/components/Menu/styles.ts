@@ -56,6 +56,8 @@ export const CloseButton = styled.button`
 
   background: none;
   border: none;
+
+  cursor: pointer;
 `;
 
 export const MenuButton = styled.button`

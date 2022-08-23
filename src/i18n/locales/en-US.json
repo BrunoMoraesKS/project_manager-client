@@ -3,7 +3,8 @@
     "common": {
       "create": "Create",
       "cancel": "Cancel",
-      "typeHere": "Type here..."
+      "typeHere": "Type here...",
+      "delete": "Delete"
     },
 
     "shouldBeCompletedAt": {
@@ -33,6 +34,10 @@
 
       "shouldBeCompletedAt": "Should be done until",
       "shouldBeCompletedAtIsRequired": "Date is required"
+    },
+
+    "deleteTaskModal": {
+      "areYouSure": "Are you sure?"
     }
   }
 }

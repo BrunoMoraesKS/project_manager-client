@@ -1,10 +1,16 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ThemeContext } from '../../context/theme';
-import { dateFormat } from '../../utils/dateFormat';
+import { complete } from '../../services/tasks/complete';
+import { uncomplete } from '../../services/tasks/uncomplete';
+import { faTrash, faPencil } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as S from './styles';
+import UpdateTaskModal from '../UpdateTaskModal';
+import DeleteTaskModal from '../DeleteTaskModal';
 
 interface ITaskProps {
+  id: string;
   title: string;
   user: string;
   shouldBeCompletedAt: Date;
@@ -12,46 +18,49 @@ interface ITaskProps {
 }
 
 const Task = ({
+  id,
   title,
   user,
   shouldBeCompletedAt,
   isCompleted,
 }: ITaskProps) => {
+  const [isTaskCompleted, setIsTaskCompleted] = useState(isCompleted);
+  const [showUpdateModal, setShowUpdateModal] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+
   const { selectedTheme } = useContext(ThemeContext);
   const { t } = useTranslation();
 
-  const status = () => {
+  const shouldBeCompletedAtDate = new Date(shouldBeCompletedAt);
+  shouldBeCompletedAtDate.setDate(shouldBeCompletedAtDate.getDate() + 1);
+
+  const dateCheck = () => {
+    const today = new Date();
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
     const shouldBeCompletedAtDate = new Date(shouldBeCompletedAt);
     shouldBeCompletedAtDate.setDate(shouldBeCompletedAtDate.getDate() + 1);
 
-    const today = new Date().toLocaleDateString();
-
-    const tomorrow = new Date();
-    tomorrow.setDate(tomorrow.getDate() + 1);
-
-    if (shouldBeCompletedAtDate.toLocaleDateString() < today) {
+    if (
+      shouldBeCompletedAtDate.toDateString() < today.toDateString() &&
+      shouldBeCompletedAtDate.getFullYear() <= today.getFullYear()
+    ) {
       return 0;
     }
-
-    if (shouldBeCompletedAtDate.toLocaleDateString() === today) {
+    if (shouldBeCompletedAtDate.toDateString() === today.toDateString()) {
       return 1;
     }
-
-    if (
-      shouldBeCompletedAtDate.toLocaleDateString() ===
-      tomorrow.toLocaleDateString()
-    ) {
+    if (shouldBeCompletedAtDate.toDateString() === tomorrow.toDateString()) {
       return 2;
     }
-
     return 3;
   };
 
   const dateCode = {
-    0: dateFormat(new Date(shouldBeCompletedAt).toDateString()),
+    0: shouldBeCompletedAtDate.toLocaleDateString(),
     1: t('shouldBeCompletedAt.today'),
     2: t('shouldBeCompletedAt.tomorrow'),
-    3: dateFormat(new Date(shouldBeCompletedAt).toDateString()),
+    3: shouldBeCompletedAtDate.toLocaleDateString(),
   };
 
   const checkboxColor = {
@@ -61,10 +70,38 @@ const Task = ({
     3: selectedTheme === 'light' ? '#343A40' : '#E9ECEF',
   };
 
+  const completeTask = async () => {
+    const { data } = await complete({ taskId: id });
+
+    return data;
+  };
+
+  const uncompleteTask = async () => {
+    const { data } = await uncomplete({ taskId: id });
+
+    return data;
+  };
+
   return (
-    <S.Container isCompleted={isCompleted} status={checkboxColor[status()]}>
+    <S.Container
+      isCompleted={isTaskCompleted}
+      status={checkboxColor[dateCheck()]}
+    >
       <S.CheckBox>
-        <S.Check type="checkbox" id={title} defaultChecked={isCompleted} />
+        <S.Check
+          type="checkbox"
+          id={title}
+          defaultChecked={isTaskCompleted}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+            if (e.target.checked) {
+              setIsTaskCompleted(true);
+              completeTask();
+            } else {
+              setIsTaskCompleted(false);
+              uncompleteTask();
+            }
+          }}
+        />
         <S.Label htmlFor={title}>
           <svg width="50" height="50" viewBox="20 25 100 100">
             <rect
@@ -77,7 +114,7 @@ const Task = ({
                   ? selectedTheme === 'light'
                     ? '#dedede'
                     : '#6c757d'
-                  : checkboxColor[status()]
+                  : checkboxColor[dateCheck()]
               }
               fill="none"
             />
@@ -99,7 +136,41 @@ const Task = ({
         </S.Label>
       </S.CheckBox>
 
-      <S.Span>{`${title} @${user} ${dateCode[status()]}`}</S.Span>
+      <S.Span>{`${title} @${user} ${dateCode[dateCheck()]}`}</S.Span>
+
+      <S.ButtonsContainer>
+        <S.TaskButton
+          onClick={() => {
+            setShowUpdateModal(true);
+          }}
+        >
+          <FontAwesomeIcon icon={faPencil} />
+        </S.TaskButton>
+        <S.TaskButton
+          onClick={() => {
+            setShowDeleteModal(true);
+          }}
+        >
+          <FontAwesomeIcon icon={faTrash} />
+        </S.TaskButton>
+      </S.ButtonsContainer>
+
+      {showUpdateModal && (
+        <UpdateTaskModal
+          id={id}
+          name={title}
+          user={user}
+          shouldBeCompletedAt={shouldBeCompletedAt}
+          setShowUpdateTaskModal={setShowUpdateModal}
+        />
+      )}
+
+      {showDeleteModal && (
+        <DeleteTaskModal
+          taskId={id}
+          setShowDeleteTaskModal={setShowDeleteModal}
+        />
+      )}
     </S.Container>
   );
 };

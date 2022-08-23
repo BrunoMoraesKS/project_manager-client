@@ -50,6 +50,7 @@ const Project = () => {
               return (
                 <Task
                   key={task.id}
+                  id={task.id}
                   title={task.name}
                   user={task.user}
                   shouldBeCompletedAt={task.shouldBeCompletedAt}

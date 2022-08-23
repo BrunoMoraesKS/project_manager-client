@@ -10,32 +10,38 @@ import { useTranslation } from 'react-i18next';
 import Modal from '../Modal';
 import Input from '../Input';
 import Button from '../Button';
-import { create } from '../../services/tasks/create';
+import { update } from '../../services/tasks/update';
 import { useMutation, useQueryClient } from 'react-query';
 
-interface INewTaskModalProps {
-  setShowNewTaskModal: (value: boolean) => void;
-  projectId: string;
-}
-
-interface IData {
-  projectId: string;
+interface IUpdateTaskModalProps {
+  setShowUpdateTaskModal: (value: boolean) => void;
+  id: string;
   name: string;
   user: string;
   shouldBeCompletedAt: Date;
 }
 
-const NewTaskModal = ({
-  setShowNewTaskModal,
-  projectId,
-}: INewTaskModalProps) => {
+interface IData {
+  id: string;
+  name: string;
+  user: string;
+  shouldBeCompletedAt: Date;
+}
+
+const UpdateTaskModal = ({
+  setShowUpdateTaskModal,
+  id,
+  name,
+  user,
+  shouldBeCompletedAt,
+}: IUpdateTaskModalProps) => {
   const { t } = useTranslation();
   const queryClient = useQueryClient();
 
-  const createTask = useMutation(
-    async ({ projectId, name, user, shouldBeCompletedAt }: IData) => {
-      const { data } = await create({
-        projectId,
+  const updateTask = useMutation(
+    async ({ id, name, user, shouldBeCompletedAt }: IData) => {
+      const { data } = await update({
+        id,
         name,
         user,
         shouldBeCompletedAt,
@@ -46,10 +52,11 @@ const NewTaskModal = ({
   );
 
   const schema = yup.object().shape({
-    name: yup.string().required(t('newTaskModal.nameIsRequired')),
-    user: yup.string().required(t('newTaskModal.userIsRequired')),
+    name: yup.string().default(name).required(t('newTaskModal.nameIsRequired')),
+    user: yup.string().default(user).required(t('newTaskModal.userIsRequired')),
     shouldBeCompletedAt: yup
       .string()
+      .default(new Date(shouldBeCompletedAt).toISOString().split('T')[0])
       .required(t('newTaskModal.shouldBeCompletedAtIsRequired')),
   });
 
@@ -64,8 +71,8 @@ const NewTaskModal = ({
   const onSubmit = async (data: AnyObject) => {
     const { name, user, shouldBeCompletedAt } = data;
 
-    await createTask.mutateAsync(
-      { projectId, name, user, shouldBeCompletedAt },
+    await updateTask.mutateAsync(
+      { id, name, user, shouldBeCompletedAt },
       {
         onSuccess: () => {
           queryClient.invalidateQueries('tasks');
@@ -77,24 +84,24 @@ const NewTaskModal = ({
       }
     );
 
-    setShowNewTaskModal(false);
+    setShowUpdateTaskModal(false);
   };
 
   return (
     <Modal>
-      <S.NewTaskModalContainer>
-        <S.NewTaskTitleContainer>
-          <S.NewTaskTitle>{t('newTaskModal.addTask')}</S.NewTaskTitle>
-          <S.NewTaskCloseButton
+      <S.UpdateTaskModalContainer>
+        <S.UpdateTaskTitleContainer>
+          <S.UpdateTaskTitle>{t('newTaskModal.addTask')}</S.UpdateTaskTitle>
+          <S.UpdateTaskCloseButton
             onClick={() => {
-              setShowNewTaskModal(false);
+              setShowUpdateTaskModal(false);
             }}
           >
             <FontAwesomeIcon icon={faXmark} />
-          </S.NewTaskCloseButton>
-        </S.NewTaskTitleContainer>
+          </S.UpdateTaskCloseButton>
+        </S.UpdateTaskTitleContainer>
 
-        <S.NewTaskContent>
+        <S.UpdateTaskContent>
           <Controller
             control={control}
             name="name"
@@ -106,6 +113,7 @@ const NewTaskModal = ({
                 onChange={onChange}
                 value={value}
                 onBlur={onBlur}
+                defaultValue={name}
               />
             )}
           />
@@ -120,6 +128,7 @@ const NewTaskModal = ({
                 onChange={onChange}
                 value={value}
                 onBlur={onBlur}
+                defaultValue={user}
               />
             )}
           />
@@ -135,16 +144,19 @@ const NewTaskModal = ({
                 onChange={onChange}
                 value={value}
                 onBlur={onBlur}
+                defaultValue={
+                  new Date(shouldBeCompletedAt).toISOString().split('T')[0]
+                }
               />
             )}
           />
-        </S.NewTaskContent>
+        </S.UpdateTaskContent>
 
-        <S.NewTaskButtonsContainer>
+        <S.UpdateTaskButtonsContainer>
           <Button
-            disabled={createTask.isLoading}
+            disabled={updateTask.isLoading}
             onClick={() => {
-              setShowNewTaskModal(false);
+              setShowUpdateTaskModal(false);
             }}
             fullWidth
             variant="secondary"
@@ -152,7 +164,7 @@ const NewTaskModal = ({
             {t('common.cancel').toUpperCase()}
           </Button>
           <Button
-            disabled={createTask.isLoading}
+            disabled={updateTask.isLoading}
             onClick={(e) => {
               e.preventDefault();
               handleSubmit(onSubmit)();
@@ -161,10 +173,10 @@ const NewTaskModal = ({
           >
             {t('common.create').toUpperCase()}
           </Button>
-        </S.NewTaskButtonsContainer>
-      </S.NewTaskModalContainer>
+        </S.UpdateTaskButtonsContainer>
+      </S.UpdateTaskModalContainer>
     </Modal>
   );
 };
 
-export default NewTaskModal;
+export default UpdateTaskModal;
