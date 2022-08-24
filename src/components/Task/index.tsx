@@ -68,8 +68,6 @@ const Task = ({
       { taskId },
       {
         onSuccess: () => {
-          toast.success(t('common.success'));
-
           queryClient.invalidateQueries('tasks');
         },
 
@@ -93,8 +91,6 @@ const Task = ({
       { taskId },
       {
         onSuccess: () => {
-          toast.success(t('common.success'));
-
           queryClient.invalidateQueries('tasks');
         },
 

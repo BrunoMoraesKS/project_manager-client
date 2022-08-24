@@ -14,7 +14,9 @@ export const Container = styled.div`
   border-radius: 4px;
 `;
 
-export const Name = styled.h4``;
+export const Name = styled.h4`
+  word-break: break-all;
+`;
 
 export const DeletedAt = styled.span``;
 

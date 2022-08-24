@@ -20,14 +20,20 @@ export const Container = styled.div<IContainerProps>`
 `;
 
 export const Span = styled.span`
+  margin: 0 16px;
+  word-break: break-all;
+
   font-weight: 400;
 `;
 
 export const CheckBox = styled.div`
   position: relative;
+  top: 4px;
   display: block;
   width: 32px;
   height: 32px;
+  min-width: 32px;
+  min-height: 32px;
   overflow: hidden;
 `;
 

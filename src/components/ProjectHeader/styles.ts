@@ -8,7 +8,9 @@ export const Container = styled.header`
   width: 100%;
 `;
 
-export const Title = styled.h2``;
+export const Title = styled.h2`
+  word-break: break-all;
+`;
 
 export const TitleContainer = styled.div`
   display: flex;
