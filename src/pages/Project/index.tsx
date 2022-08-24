@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
 import Loading from '../../components/Loading';
-import MiniLoading from '../../components/MiniLoading';
 import NewTaskModal from '../../components/NewTaskModal';
 import ProjectHeader from '../../components/ProjectHeader';
 import Task from '../../components/Task';
@@ -31,12 +30,7 @@ const Project = () => {
 
   const projectId = id!.toString();
 
-  const {
-    data: project,
-    refetch,
-    isFetching,
-    isLoading,
-  } = useProject({ projectId });
+  const { data: project, refetch, isLoading } = useProject({ projectId });
 
   useEffect(() => {
     refetch();
@@ -54,9 +48,9 @@ const Project = () => {
     if (filter === 'default') {
       return project?.tasks.sort((a, b) => {
         if (a.isCompleted && !b.isCompleted) {
-          return 1;
-        } else if (!a.isCompleted && b.isCompleted) {
           return -1;
+        } else if (!a.isCompleted && b.isCompleted) {
+          return 1;
         } else {
           return 0;
         }
@@ -85,7 +79,7 @@ const Project = () => {
     <>
       {isLoading && <Loading />}
 
-      {!isFetching && (
+      {!isLoading && (
         <S.Container>
           {!id && <h1>id not found</h1>}
 
@@ -100,8 +94,6 @@ const Project = () => {
           </S.FilterButton>
 
           <S.TasksContainer>
-            {isFetching && <MiniLoading />}
-
             {filterTasksBy(taskFilter)
               ?.sort((a, b) => {
                 if (a.shouldBeCompletedAt > b.shouldBeCompletedAt) {
@@ -127,13 +119,13 @@ const Project = () => {
               })}
           </S.TasksContainer>
 
-          <S.NewProjectButton
+          <S.NewTaskButton
             onClick={() => {
               handleNewTask();
             }}
           >
             + {t('newTaskModal.addTask')}
-          </S.NewProjectButton>
+          </S.NewTaskButton>
 
           {showNewTaskModal && (
             <NewTaskModal

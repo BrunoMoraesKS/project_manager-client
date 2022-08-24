@@ -21,14 +21,7 @@ const Menu = () => {
   const navigate = useNavigate();
   const { data: projects, isFetching } = useProjects();
 
-  const wrapperRef = useRef(null);
   const { width } = useWindowDimensions();
-
-  useClickOutside(wrapperRef, () => {
-    if (isMenuOpen) {
-      setIsMenuOpen(false);
-    }
-  });
 
   useEffect(() => {
     if (width > 768) {
@@ -48,11 +41,7 @@ const Menu = () => {
         </S.MenuButton>
       )}
 
-      <S.Container
-        ref={width < 768 ? wrapperRef : null}
-        isMenuOpen={isMenuOpen}
-        width={width}
-      >
+      <S.Container isMenuOpen={isMenuOpen} width={width}>
         {width < 768 && (
           <S.CloseButton
             onClick={() => {
@@ -99,6 +88,13 @@ const Menu = () => {
           <NewProjectModal setShowNewProjectModal={setShowNewProjectModal} />
         )}
       </S.Container>
+      <S.OuterContainer
+        onClick={() => {
+          setIsMenuOpen(false);
+        }}
+        isMenuOpen={isMenuOpen}
+        width={width}
+      />
     </>
   );
 };

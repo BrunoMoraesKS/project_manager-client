@@ -1,17 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useMutation, useQueryClient } from 'react-query';
+import DeleteAllInactiveProjectsModal from '../../components/DeleteAllInactiveProjectsModal';
 import Divider from '../../components/Divider';
 import ProjectCard from '../../components/ProjectCard';
 import useProjectsSoftdeleted from '../../services/hooks/projects/useProjectsSoftdeleted';
-import { deleteAllUnactive } from '../../services/projects/deleteAllUnactive';
 import { restoreAll } from '../../services/projects/restoreAll';
 
 import * as S from './styles';
 
 const TrashCan = () => {
+  const [
+    showDeleteAllInactiveProjectsModal,
+    setShowDeleteAllInactiveProjectsModal,
+  ] = useState(false);
+
   const { t } = useTranslation();
-  const { data: projects, isFetching } = useProjectsSoftdeleted();
+  const { data: projects } = useProjectsSoftdeleted();
   const queryClient = useQueryClient();
 
   const restoreAllMutation = useMutation(async () => {
@@ -20,31 +25,8 @@ const TrashCan = () => {
     return data;
   });
 
-  const deleteAllUnactiveMutation = useMutation(async () => {
-    const { data } = await deleteAllUnactive();
-
-    return data;
-  });
-
   const handleRestoreAll = async () => {
     await restoreAllMutation.mutateAsync(
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      {} as any,
-
-      {
-        onSuccess: () => {
-          queryClient.invalidateQueries('projects');
-          queryClient.invalidateQueries('softdeleted-projects');
-        },
-
-        onError: () => {
-          console.log('error');
-        },
-      }
-    );
-  };
-  const handleDeleteAllUnactive = async () => {
-    await deleteAllUnactiveMutation.mutateAsync(
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       {} as any,
 
@@ -78,7 +60,7 @@ const TrashCan = () => {
             </S.actionAllButton>
             <S.actionAllButton
               onClick={() => {
-                handleDeleteAllUnactive();
+                setShowDeleteAllInactiveProjectsModal(true);
                 console.log('deleted all');
               }}
             >
@@ -98,6 +80,14 @@ const TrashCan = () => {
           );
         })}
       </S.Content>
+
+      {showDeleteAllInactiveProjectsModal && (
+        <DeleteAllInactiveProjectsModal
+          setShowDeleteAllInactiveProjectsModal={
+            setShowDeleteAllInactiveProjectsModal
+          }
+        />
+      )}
     </S.Container>
   );
 };

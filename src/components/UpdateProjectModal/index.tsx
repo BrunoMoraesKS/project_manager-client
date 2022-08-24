@@ -75,7 +75,14 @@ const UpdateProjectModal = ({
 
   return (
     <Modal>
-      <S.UpdateProjectModalContainer>
+      <S.UpdateProjectModalContainer
+        onKeyDown={(e) => {
+          if (e.key === 'Enter') {
+            e.preventDefault();
+            handleSubmit(onSubmit)();
+          }
+        }}
+      >
         <S.UpdateProjectTitleContainer>
           <S.UpdateProjectTitle>
             {t('updateProjectModal.updateProject')}

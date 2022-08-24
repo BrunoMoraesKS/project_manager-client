@@ -75,7 +75,8 @@
       "restoreAll": "Restore all",
       "delete": "Delete",
       "deleteAll": "Delete All",
-      "deletedAt": "Deleted at"
+      "deletedAt": "Deleted at",
+      "areYouSure": "Are you sure?"
     }
   }
 }

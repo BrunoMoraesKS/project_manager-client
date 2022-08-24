@@ -1,6 +1,6 @@
 import baseURL from '../baseUrl';
 
-export const deleteAllUnactive = async () => {
+export const deleteAllInactive = async () => {
   let data;
   let error;
   let status;

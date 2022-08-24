@@ -64,7 +64,14 @@ const NewProjectModal = ({ setShowNewProjectModal }: INewProjectModalProps) => {
 
   return (
     <Modal>
-      <S.NewProjectModalContainer>
+      <S.NewProjectModalContainer
+        onKeyDown={(e) => {
+          if (e.key === 'Enter') {
+            e.preventDefault();
+            handleSubmit(onSubmit)();
+          }
+        }}
+      >
         <S.NewProjectTitleContainer>
           <S.NewProjectTitle>{t('menu.newProject')}</S.NewProjectTitle>
           <S.NewProjectCloseButton
@@ -89,6 +96,7 @@ const NewProjectModal = ({ setShowNewProjectModal }: INewProjectModalProps) => {
                   onChange={onChange}
                   value={value}
                   onBlur={onBlur}
+                  autoFocus
                 />
               )}
             />
@@ -112,6 +120,7 @@ const NewProjectModal = ({ setShowNewProjectModal }: INewProjectModalProps) => {
               e.preventDefault();
               handleSubmit(onSubmit)();
             }}
+            type="submit"
             fullWidth
           >
             {t('common.create').toUpperCase()}

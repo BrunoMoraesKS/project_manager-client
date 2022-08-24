@@ -89,7 +89,14 @@ const UpdateTaskModal = ({
 
   return (
     <Modal>
-      <S.UpdateTaskModalContainer>
+      <S.UpdateTaskModalContainer
+        onKeyDown={(e) => {
+          if (e.key === 'Enter') {
+            e.preventDefault();
+            handleSubmit(onSubmit)();
+          }
+        }}
+      >
         <S.UpdateTaskTitleContainer>
           <S.UpdateTaskTitle>
             {t('updateTaskModal.updateTask')}

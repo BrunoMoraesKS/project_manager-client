@@ -9,6 +9,7 @@ import * as S from './styles';
 import UpdateTaskModal from '../UpdateTaskModal';
 import DeleteTaskModal from '../DeleteTaskModal';
 import { dateCompare } from '../../utils/dateCompare';
+import { useMutation, useQueryClient } from 'react-query';
 
 interface ITaskProps {
   id: string;
@@ -16,6 +17,9 @@ interface ITaskProps {
   user: string;
   shouldBeCompletedAt: Date;
   isCompleted: boolean;
+}
+interface IData {
+  taskId: string;
 }
 
 const Task = ({
@@ -31,6 +35,7 @@ const Task = ({
 
   const { selectedTheme } = useContext(ThemeContext);
   const { t } = useTranslation();
+  const queryClient = useQueryClient();
 
   const shouldBeCompletedAtDate = new Date(shouldBeCompletedAt);
   shouldBeCompletedAtDate.setDate(shouldBeCompletedAtDate.getDate() + 1);
@@ -49,16 +54,50 @@ const Task = ({
     3: selectedTheme === 'light' ? '#343A40' : '#E9ECEF',
   };
 
-  const completeTask = async () => {
-    const { data } = await complete({ taskId: id });
+  const completeTaskMutation = useMutation(async ({ taskId }: IData) => {
+    const { data } = await complete({
+      taskId,
+    });
 
     return data;
+  });
+
+  const handleComplete = async (taskId: string) => {
+    await completeTaskMutation.mutateAsync(
+      { taskId },
+      {
+        onSuccess: () => {
+          queryClient.invalidateQueries('tasks');
+        },
+
+        onError: () => {
+          console.log('error');
+        },
+      }
+    );
   };
 
-  const uncompleteTask = async () => {
-    const { data } = await uncomplete({ taskId: id });
+  const uncompleteTaskMutation = useMutation(async ({ taskId }: IData) => {
+    const { data } = await uncomplete({
+      taskId,
+    });
 
     return data;
+  });
+
+  const handleUncomplete = async (taskId: string) => {
+    await uncompleteTaskMutation.mutateAsync(
+      { taskId },
+      {
+        onSuccess: () => {
+          queryClient.invalidateQueries('tasks');
+        },
+
+        onError: () => {
+          console.log('error');
+        },
+      }
+    );
   };
 
   return (
@@ -74,10 +113,10 @@ const Task = ({
           onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
             if (e.target.checked) {
               setIsTaskCompleted(true);
-              completeTask();
+              handleComplete(id);
             } else {
               setIsTaskCompleted(false);
-              uncompleteTask();
+              handleUncomplete(id);
             }
           }}
         />

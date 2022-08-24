@@ -75,7 +75,8 @@
       "restoreAll": "Restaurar todos",
       "delete": "Deletar",
       "deleteAll": "Deletar todos",
-      "deletedAt": "Deletado em"
+      "deletedAt": "Deletado em",
+      "areYouSure": "Você tem certeza?"
     }
   }
 }

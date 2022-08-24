@@ -53,6 +53,8 @@ export const actionAllButton = styled.button`
   color: ${({ theme }) => theme.paragraph};
 
   text-decoration: underline;
+
+  cursor: pointer;
 `;
 
 export const actionAllButtonsContainer = styled.div`

@@ -35,4 +35,6 @@ export const ProjectButton = styled.button`
   &:hover {
     color: ${({ theme }) => theme.primary};
   }
+
+  color: ${({ theme }) => theme.heading};
 `;

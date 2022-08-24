@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const SoftdeleteProjectModalContainer = styled.form`
+export const DeleteAllInactiveProjectsModalContainer = styled.form`
   display: flex;
   flex-direction: column;
   gap: 40px;
@@ -9,15 +9,15 @@ export const SoftdeleteProjectModalContainer = styled.form`
   max-width: 400px;
 `;
 
-export const SoftdeleteProjectTitle = styled.h5``;
+export const DeleteAllInactiveProjectsTitle = styled.h5``;
 
-export const SoftdeleteProjectTitleContainer = styled.div`
+export const DeleteAllInactiveProjectsTitleContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
 `;
 
-export const SoftdeleteProjectCloseButton = styled.button`
+export const DeleteAllInactiveProjectsCloseButton = styled.button`
   background: none;
   border: none;
 
@@ -26,7 +26,7 @@ export const SoftdeleteProjectCloseButton = styled.button`
   cursor: pointer;
 `;
 
-export const SoftdeleteProjectButtonsContainer = styled.div`
+export const DeleteAllInactiveProjectsButtonsContainer = styled.div`
   display: flex;
   align-self: flex-end;
   gap: 8px;

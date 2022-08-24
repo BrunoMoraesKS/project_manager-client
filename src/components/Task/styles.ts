@@ -67,6 +67,8 @@ export const TaskButton = styled.button`
 
   cursor: pointer;
 
+  color: ${({ theme }) => theme.paragraph};
+
   transition: 0.1s all;
   &:hover {
     color: ${({ theme }) => theme.primary};

@@ -82,7 +82,14 @@ const NewTaskModal = ({
 
   return (
     <Modal>
-      <S.NewTaskModalContainer>
+      <S.NewTaskModalContainer
+        onKeyDown={(e) => {
+          if (e.key === 'Enter') {
+            e.preventDefault();
+            handleSubmit(onSubmit)();
+          }
+        }}
+      >
         <S.NewTaskTitleContainer>
           <S.NewTaskTitle>{t('newTaskModal.addTask')}</S.NewTaskTitle>
           <S.NewTaskCloseButton

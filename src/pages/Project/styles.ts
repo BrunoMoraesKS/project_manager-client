@@ -25,6 +25,9 @@ export const FilterButton = styled.button`
   cursor: pointer;
 
   transition: 0.1s all;
+
+  color: ${({ theme }) => theme.heading};
+
   &:hover {
     color: ${({ theme }) => theme.primary};
   }
@@ -38,7 +41,7 @@ export const FilterMenu = styled.button`
   border: 1px solid red;
 `;
 
-export const NewProjectButton = styled.button`
+export const NewTaskButton = styled.button`
   display: flex;
   align-self: flex-start;
 
@@ -49,6 +52,8 @@ export const NewProjectButton = styled.button`
   margin-top: 24px;
 
   font-size: 1.6rem;
+
+  color: ${({ theme }) => theme.paragraph};
 
   cursor: pointer;
 `;

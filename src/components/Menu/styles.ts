@@ -15,6 +15,17 @@ const menuAnimation = keyframes`
     }
 `;
 
+export const OuterContainer = styled.div<IContainerProps>`
+  display: ${({ isMenuOpen, width }) =>
+    width > 768 ? 'none' : isMenuOpen ? 'auto' : 'none'};
+  position: fixed;
+  top: 0;
+  right: 0;
+
+  width: 100vw;
+  height: 100vh;
+`;
+
 export const Container = styled.nav<IContainerProps>`
   display: ${({ isMenuOpen }) => (isMenuOpen ? 'flex' : 'none')};
   flex-direction: column;
@@ -32,6 +43,8 @@ export const Container = styled.nav<IContainerProps>`
   background-color: ${({ theme }) => theme.menu};
 
   animation: ${menuAnimation} 0.3s ease-in-out;
+
+  z-index: 999;
 `;
 
 export const Content = styled.div`
