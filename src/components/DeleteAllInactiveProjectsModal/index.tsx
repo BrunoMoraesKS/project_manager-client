@@ -4,6 +4,7 @@ import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useTranslation } from 'react-i18next';
 import Modal from '../Modal';
+import toast from 'react-hot-toast';
 import Button from '../Button';
 import { useMutation, useQueryClient } from 'react-query';
 import { deleteAllInactive } from '../../services/projects/deleteAllInactive';
@@ -31,12 +32,13 @@ const DeleteAllInactiveProjectsModal = ({
 
       {
         onSuccess: () => {
+          toast.success(t('common.success'));
           queryClient.invalidateQueries('projects');
           queryClient.invalidateQueries('softdeleted-projects');
         },
 
         onError: () => {
-          console.log('error');
+          toast.error(t('common.error'));
         },
       }
     );

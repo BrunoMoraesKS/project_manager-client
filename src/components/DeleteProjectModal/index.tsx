@@ -7,6 +7,7 @@ import Modal from '../Modal';
 import Button from '../Button';
 import { useMutation, useQueryClient } from 'react-query';
 import { deleteProject } from '../../services/projects/delete';
+import toast from 'react-hot-toast';
 
 interface IDeleteProjectModalProps {
   setShowDeleteProjectModal: (value: boolean) => void;
@@ -35,12 +36,13 @@ const DeleteProjectModal = ({
       { projectId },
       {
         onSuccess: () => {
+          toast.success(t('common.success'));
           queryClient.invalidateQueries('projects');
           queryClient.invalidateQueries('softdeleted-projects');
         },
 
         onError: () => {
-          console.log('error');
+          toast.error(t('common.error'));
         },
       }
     );

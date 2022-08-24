@@ -8,6 +8,7 @@ import Button from '../Button';
 import { softdelete } from '../../services/projects/softdelete';
 import { useMutation, useQueryClient } from 'react-query';
 import { useNavigate } from 'react-router-dom';
+import toast from 'react-hot-toast';
 
 interface ISoftdeleteProjectModalProps {
   setShowSoftdeleteProjectModal: (value: boolean) => void;
@@ -39,6 +40,8 @@ const SoftdeleteProjectModal = ({
       { projectId },
       {
         onSuccess: () => {
+          toast.success(t('common.success'));
+
           queryClient.invalidateQueries('tasks');
           queryClient.invalidateQueries('projects');
 
@@ -46,7 +49,7 @@ const SoftdeleteProjectModal = ({
         },
 
         onError: () => {
-          console.log('error');
+          toast.error(t('common.error'));
         },
       }
     );

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import toast from 'react-hot-toast';
 import { useTranslation } from 'react-i18next';
 import { useMutation, useQueryClient } from 'react-query';
 import { restoreOne } from '../../services/projects/restoreOne';
@@ -34,12 +35,14 @@ const ProjectCard = ({ name, deletedAt, id }: IProjectCardProps) => {
       { projectId },
       {
         onSuccess: () => {
+          toast.success(t('common.success'));
+
           queryClient.invalidateQueries('projects');
           queryClient.invalidateQueries('softdeleted-projects');
         },
 
         onError: () => {
-          console.log('error');
+          toast.error(t('common.error'));
         },
       }
     );
@@ -60,7 +63,6 @@ const ProjectCard = ({ name, deletedAt, id }: IProjectCardProps) => {
           fullWidth
           onClick={() => {
             handleRestoreOne(id);
-            console.log('restore');
           }}
         >
           {t('trashCan.restore')}
@@ -70,7 +72,6 @@ const ProjectCard = ({ name, deletedAt, id }: IProjectCardProps) => {
           fullWidth
           onClick={() => {
             setShowDeleteProjectModal(true);
-            console.log('delete');
           }}
           variant="secondary"
         >

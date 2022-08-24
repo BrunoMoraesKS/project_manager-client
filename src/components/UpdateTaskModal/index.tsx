@@ -12,6 +12,7 @@ import Input from '../Input';
 import Button from '../Button';
 import { update } from '../../services/tasks/update';
 import { useMutation, useQueryClient } from 'react-query';
+import toast from 'react-hot-toast';
 
 interface IUpdateTaskModalProps {
   setShowUpdateTaskModal: (value: boolean) => void;
@@ -75,11 +76,13 @@ const UpdateTaskModal = ({
       { id, name, user, shouldBeCompletedAt },
       {
         onSuccess: () => {
+          toast.success(t('common.success'));
+
           queryClient.invalidateQueries('tasks');
         },
 
         onError: () => {
-          console.log('error');
+          toast.error(t('common.error'));
         },
       }
     );

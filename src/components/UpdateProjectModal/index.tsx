@@ -12,6 +12,7 @@ import Input from '../Input';
 import Button from '../Button';
 import { update } from '../../services/projects/update';
 import { useMutation, useQueryClient } from 'react-query';
+import toast from 'react-hot-toast';
 
 interface IUpdateProjectModalProps {
   projectId: string;
@@ -60,12 +61,14 @@ const UpdateProjectModal = ({
       { name, projectId },
       {
         onSuccess: () => {
+          toast.success(t('common.success'));
+
           queryClient.invalidateQueries('projects');
           queryClient.invalidateQueries('tasks');
         },
 
         onError: () => {
-          console.log('error');
+          toast.error(t('common.error'));
         },
       }
     );

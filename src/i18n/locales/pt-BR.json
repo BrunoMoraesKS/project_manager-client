@@ -6,7 +6,18 @@
       "typeHere": "Digite aqui...",
       "delete": "Deletar",
       "update": "Editar",
-      "move": "Mover"
+      "move": "Mover",
+      "success": "Sucesso",
+      "error": "Erro"
+    },
+
+    "home": {
+      "title": "Project Manager",
+      "paragraph1": "Bem-vindo(a) ao Project Manager, aqui você pode separar seus projetos de maneira organizada.",
+      "paragraph2": "No menu lateral, é possível criar um projeto e navegar entre os projetos existentes.",
+      "paragraph3": "Em um projeto, você pode editar o seu nome, criar, editar e excluir tarefas, além de poder mover o projeto para a lixeira. As tarefas de um projeto podem ser filtradas, para isso, basta clicar no ícone de filtro, na parte superior direita da sua tela.",
+      "paragraph4": "Para acessar as configurações do Project Manager, clique no ícone de engrenagem, no canto inferior direito da tela. Nas configurações é possível trocar o tema e o idioma, além de ter acesso à lixeira.",
+      "paragraph5": "Na tela de lixeira é possível restaurar ou deletar um, ou todos os projetos inativos."
     },
 
     "shouldBeCompletedAt": {

@@ -12,6 +12,7 @@ import Input from '../Input';
 import Button from '../Button';
 import { create } from '../../services/projects/create';
 import { useMutation, useQueryClient } from 'react-query';
+import toast from 'react-hot-toast';
 
 interface INewProjectModalProps {
   setShowNewProjectModal: (value: boolean) => void;
@@ -50,11 +51,13 @@ const NewProjectModal = ({ setShowNewProjectModal }: INewProjectModalProps) => {
       { name },
       {
         onSuccess: () => {
+          toast.success(t('common.success'));
+
           queryClient.invalidateQueries('projects');
         },
 
         onError: () => {
-          console.log('error');
+          toast.error(t('common.error'));
         },
       }
     );

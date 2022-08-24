@@ -7,6 +7,7 @@ import Modal from '../Modal';
 import Button from '../Button';
 import { deleteTask } from '../../services/tasks/delete';
 import { useMutation, useQueryClient } from 'react-query';
+import toast from 'react-hot-toast';
 
 interface IDeleteTaskModalProps {
   setShowDeleteTaskModal: (value: boolean) => void;
@@ -37,11 +38,12 @@ const DeleteTaskModal = ({
       { taskId },
       {
         onSuccess: () => {
+          toast.success(t('common.success'));
           queryClient.invalidateQueries('tasks');
         },
 
         onError: () => {
-          console.log('error');
+          toast.error(t('common.error'));
         },
       }
     );

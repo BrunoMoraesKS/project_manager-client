@@ -6,7 +6,18 @@
       "typeHere": "Type here...",
       "delete": "Delete",
       "update": "Update",
-      "move": "Move"
+      "move": "Move",
+      "success": "Success",
+      "error": "Error"
+    },
+
+    "home": {
+      "title": "Project Manager",
+      "paragraph1": "Welcome to Project Manager, here you can separate your projects in an organized way.",
+      "paragraph2": "In the side menu, you can create a project and navigate between existing projects.",
+      "paragraph3": "In a project, you can edit its name, create, edit and delete tasks, and move the project to the trash. Tasks in a project can be filtered by simply clicking on the filter icon at the top right of your screen.",
+      "paragraph4": "To access the Project Manager settings, click the gear icon in the lower right corner of the screen. In the settings it is possible to change the theme and language, in addition to having access to the trash.",
+      "paragraph5": "In the trash screen it is possible to restore or delete one or all inactive projects."
     },
 
     "shouldBeCompletedAt": {

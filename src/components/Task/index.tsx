@@ -10,6 +10,7 @@ import UpdateTaskModal from '../UpdateTaskModal';
 import DeleteTaskModal from '../DeleteTaskModal';
 import { dateCompare } from '../../utils/dateCompare';
 import { useMutation, useQueryClient } from 'react-query';
+import toast from 'react-hot-toast';
 
 interface ITaskProps {
   id: string;
@@ -67,11 +68,13 @@ const Task = ({
       { taskId },
       {
         onSuccess: () => {
+          toast.success(t('common.success'));
+
           queryClient.invalidateQueries('tasks');
         },
 
         onError: () => {
-          console.log('error');
+          toast.error(t('common.error'));
         },
       }
     );
@@ -90,11 +93,13 @@ const Task = ({
       { taskId },
       {
         onSuccess: () => {
+          toast.success(t('common.success'));
+
           queryClient.invalidateQueries('tasks');
         },
 
         onError: () => {
-          console.log('error');
+          toast.error(t('common.error'));
         },
       }
     );

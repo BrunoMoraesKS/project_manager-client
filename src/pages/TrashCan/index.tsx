@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import toast from 'react-hot-toast';
 import { useTranslation } from 'react-i18next';
 import { useMutation, useQueryClient } from 'react-query';
 import DeleteAllInactiveProjectsModal from '../../components/DeleteAllInactiveProjectsModal';
@@ -32,12 +33,14 @@ const TrashCan = () => {
 
       {
         onSuccess: () => {
+          toast.success(t('common.success'));
+
           queryClient.invalidateQueries('projects');
           queryClient.invalidateQueries('softdeleted-projects');
         },
 
         onError: () => {
-          console.log('error');
+          toast.error(t('common.error'));
         },
       }
     );
@@ -53,7 +56,6 @@ const TrashCan = () => {
             <S.actionAllButton
               onClick={() => {
                 handleRestoreAll();
-                console.log('restored all');
               }}
             >
               {t('trashCan.restoreAll')}
@@ -61,7 +63,6 @@ const TrashCan = () => {
             <S.actionAllButton
               onClick={() => {
                 setShowDeleteAllInactiveProjectsModal(true);
-                console.log('deleted all');
               }}
             >
               {t('trashCan.deleteAll')}
