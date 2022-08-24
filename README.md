@@ -1,46 +1,33 @@
-# Getting Started with Create React App
+<h1>Project Manager</h1>
+<br/>
+<p>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Welcome to Project Manager, here you can separate your projects in an organized way.
+<br/>
+In the side menu, you can create a project and navigate between existing projects.
+<br/>
+In a project, you can edit its name, create, edit and delete tasks, and move the project to the trash. Tasks in a project can be filtered by simply clicking on the filter icon at the top right of your screen.
+<br/>
+To access the Project Manager settings, click the gear icon in the lower right corner of the screen. In the settings it is possible to change the theme and language, in addition to having access to the trash.
+<br/>
+In the trash screen it is possible to restore or delete one or all inactive projects.
 
-## Available Scripts
+</p>
 
-In the project directory, you can run:
+<h2>How to run:</h2>
 
-### `npm start`
+Clone the project, run <strong>npm install</strong> or <strong>yarn</strong>, after that, run <strong>npm start</strong> or <strong>yarn start</strong>.
+<br/>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+<h2>To access:</h2>
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+https://project-manager-react-client.herokuapp.com/
+<br/>
 
-### `npm test`
+<h2>To run the tests, after cloning and running the commands above, run: </h2>
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+<h3>For end-to-end tests</h3> 
+Run the command <strong>npx cypress open</strong>, a window will open, you can choose the test you want to run. In case you want to run the tests in the terminal, run <strong>npx cypress run</strong>.
+<br />
+<br />
+<h2>Made with ReactJS and Typescript.</h2>
