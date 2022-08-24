@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import Loading from '../../components/Loading';
 import NewTaskModal from '../../components/NewTaskModal';
 import ProjectHeader from '../../components/ProjectHeader';
@@ -26,15 +26,27 @@ const Project = () => {
   }, []);
 
   const { id } = useParams();
+  const navigate = useNavigate();
   const { t } = useTranslation();
 
   const projectId = id!.toString();
 
-  const { data: project, refetch, isLoading } = useProject({ projectId });
+  const {
+    data: project,
+    refetch,
+    isLoading,
+    isFetching,
+  } = useProject({ projectId });
 
   useEffect(() => {
     refetch();
   }, [id]);
+
+  useEffect(() => {
+    if (!isFetching && !isLoading && project === undefined) {
+      navigate('/notFound');
+    }
+  }, [project, isFetching, isLoading]);
 
   const handleNewTask = () => {
     setShowNewTaskModal(true);

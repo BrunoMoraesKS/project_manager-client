@@ -11,6 +11,17 @@ export const Container = styled.div<IContainerProps>`
   margin-top: ${({ width }) => (width > 768 ? 'auto' : '56px')};
 `;
 
+export const NotFound = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100vh;
+
+  font-size: 3rem;
+`;
+
 export const ConfigButton = styled.button`
   position: fixed;
   right: 16px;
