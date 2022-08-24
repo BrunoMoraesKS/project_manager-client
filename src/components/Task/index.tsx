@@ -161,6 +161,7 @@ const Task = ({
 
       <S.ButtonsContainer>
         <S.TaskButton
+          data-cy="update-task-button"
           onClick={() => {
             setShowUpdateModal(true);
           }}
@@ -168,6 +169,7 @@ const Task = ({
           <FontAwesomeIcon icon={faPencil} />
         </S.TaskButton>
         <S.TaskButton
+          data-cy="delete-task-button"
           onClick={() => {
             setShowDeleteModal(true);
           }}

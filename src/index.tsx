@@ -5,7 +5,6 @@ import { store } from './store';
 import App from './App';
 import GlobalContext from './context';
 import { QueryClient, QueryClientProvider } from 'react-query';
-import { ReactQueryDevtools } from 'react-query/devtools';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -28,8 +27,6 @@ root.render(
           <App />
         </GlobalContext>
       </Provider>
-
-      <ReactQueryDevtools />
     </QueryClientProvider>
   </React.StrictMode>
 );

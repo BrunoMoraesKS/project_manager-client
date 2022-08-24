@@ -22,6 +22,7 @@ const ProjectHeader = ({ id, name }: IProjectHeaderProps) => {
 
         <S.ButtonsContainer>
           <S.ProjectButton
+            data-cy="update-project-button"
             onClick={() => {
               setShowUpdateModal(true);
             }}
@@ -29,6 +30,7 @@ const ProjectHeader = ({ id, name }: IProjectHeaderProps) => {
             <FontAwesomeIcon icon={faPencil} />
           </S.ProjectButton>
           <S.ProjectButton
+            data-cy="softdelete-project-button"
             onClick={() => {
               setShowSoftdeleteModal(true);
             }}

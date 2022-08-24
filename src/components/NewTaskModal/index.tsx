@@ -110,6 +110,7 @@ const NewTaskModal = ({
             name="name"
             render={({ field: { onChange, onBlur, value } }) => (
               <Input
+                autoFocus
                 label={t('newTaskModal.name')}
                 error={!!errors.name}
                 helpertext={errors.name?.message?.toString()}

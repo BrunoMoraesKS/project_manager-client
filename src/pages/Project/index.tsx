@@ -120,6 +120,7 @@ const Project = () => {
           </S.TasksContainer>
 
           <S.NewTaskButton
+            data-cy="new-task-button"
             onClick={() => {
               handleNewTask();
             }}

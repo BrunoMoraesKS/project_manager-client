@@ -59,6 +59,7 @@ const ProjectCard = ({ name, deletedAt, id }: IProjectCardProps) => {
 
       <S.ButtonsContainer>
         <Button
+          data-cy="restore-project-button"
           disabled={restoreOneMutation.isLoading}
           fullWidth
           onClick={() => {
@@ -68,6 +69,7 @@ const ProjectCard = ({ name, deletedAt, id }: IProjectCardProps) => {
           {t('trashCan.restore')}
         </Button>
         <Button
+          data-cy="delete-project-button"
           disabled={restoreOneMutation.isLoading}
           fullWidth
           onClick={() => {

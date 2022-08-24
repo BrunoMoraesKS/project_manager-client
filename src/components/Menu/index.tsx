@@ -1,9 +1,8 @@
-import React, { Fragment, useEffect, useRef, useState } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import * as S from './styles';
 import { faXmark, faBars } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import useWindowDimensions from '../../hooks/useWindowDimensions';
-import { useClickOutside } from '../../hooks/useClickOutside';
 import Divider from '../Divider';
 import { IProject } from '../../interfaces/project';
 import { useTranslation } from 'react-i18next';
@@ -76,6 +75,7 @@ const Menu = () => {
           })}
 
           <S.NewProjectButton
+            data-cy="new-project-button"
             onClick={() => {
               handleNewProject();
             }}
