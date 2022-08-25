@@ -52,14 +52,14 @@ const ProjectCard = ({ name, deletedAt, id }: IProjectCardProps) => {
 
   return (
     <S.Container>
-      <S.Name> {name}</S.Name>
+      <S.Name>{name}</S.Name>
       <S.DeletedAt>
         {t('trashCan.deletedAt')}: {deletedAtDate.toLocaleDateString()}
       </S.DeletedAt>
 
       <S.ButtonsContainer>
         <Button
-          data-cy="restore-project-button"
+          data-cy={`restore-project-button-${name}`}
           disabled={restoreOneMutation.isLoading}
           fullWidth
           onClick={() => {
@@ -69,7 +69,7 @@ const ProjectCard = ({ name, deletedAt, id }: IProjectCardProps) => {
           {t('trashCan.restore')}
         </Button>
         <Button
-          data-cy="delete-project-button"
+          data-cy={`delete-project-button-${name}`}
           disabled={restoreOneMutation.isLoading}
           fullWidth
           onClick={() => {

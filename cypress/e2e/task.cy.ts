@@ -3,15 +3,15 @@ describe('Testing task CRUD', () => {
     cy.visit('http://localhost:3000/');
 
     cy.get('[data-cy=new-project-button]').click();
-    cy.get('input').type('Projeto Teste{enter}');
+    cy.get('input').type('Project1727test{enter}');
 
     cy.wait(500);
 
-    cy.get('div').contains('Projeto Teste').click();
+    cy.get('div').contains('Project1727test').click();
 
     cy.get('[data-cy=new-task-button]').click();
 
-    cy.get('label').contains('Tarefa').next().type('Tarefa Teste');
+    cy.get('label').contains('Tarefa').next().type('Tarefa teste');
     cy.get('label').contains('Usuário').next().type('Usuario Teste');
     cy.get('label').contains('Deve ser feito até').next().type('2021-01-01');
 
@@ -43,7 +43,7 @@ describe('Testing task CRUD', () => {
 
     cy.visit('http://localhost:3000/trashCan');
 
-    cy.get('[data-cy=delete-project-button]').click();
+    cy.get('[data-cy=delete-project-button-Project1727test]').click();
 
     cy.get('button').contains('DELETAR').click();
   });

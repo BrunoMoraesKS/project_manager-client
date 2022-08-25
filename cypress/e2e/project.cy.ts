@@ -4,15 +4,15 @@ describe('Testing project CRUD', () => {
 
     cy.get('[data-cy=new-project-button]').click();
 
-    cy.get('input').type('Projeto Teste{enter}');
+    cy.get('input').type('Project1727test{enter}');
   });
 
   it('can update a project', () => {
-    cy.get('div').contains('Projeto Teste').click();
+    cy.get('div').contains('Project1727test').click();
 
     cy.get('[data-cy=update-project-button]').click();
 
-    cy.get('label').contains('Nome').next().clear().type('Projeto Editado');
+    cy.get('label').contains('Nome').next().clear().type('Project1727edittest');
 
     cy.get('button').contains('EDITAR').click();
   });
@@ -28,11 +28,11 @@ describe('Testing project CRUD', () => {
 
     cy.visit('http://localhost:3000/trashCan');
 
-    cy.get('[data-cy=restore-project-button]').click();
+    cy.get('[data-cy=restore-project-button-Project1727edittest]').click();
 
     cy.wait(1000);
 
-    cy.get('div').contains('Projeto Editado').click();
+    cy.get('div').contains('Project1727edittest').click();
 
     cy.get('[data-cy=softdelete-project-button]').click();
 
@@ -42,7 +42,7 @@ describe('Testing project CRUD', () => {
 
     cy.wait(1000);
 
-    cy.get('[data-cy=delete-project-button]').click();
+    cy.get('[data-cy=delete-project-button-Project1727edittest]').click();
 
     cy.get('button').contains('DELETAR').click();
   });
